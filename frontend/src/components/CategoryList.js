@@ -13,17 +13,24 @@ const CategoryList = () => {
     }, []);
 
     return (
-        <nav className="my-4">
-            <ul className="list-group">
-                <li className="list-group-item">
-                    <Link to="/">Home</Link>
-                </li>
-                {categories.map(category => (
-                    <li key={category.id} className="list-group-item">
-                        <Link to={`/categories/${category.id}`}>{category.name}</Link>
-                    </li>
-                ))}
-            </ul>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+                <Link className="navbar-brand" to="/">Home</Link>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        {categories.map(category => (
+                            <li key={category.id} className="nav-item">
+                                <Link className="nav-link" to={`/categories/${category.id}`}>
+                                    {category.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </nav>
     );
 };

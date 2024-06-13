@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import CategoryList from './CategoryList';
-import './Home.css'; // Importa el archivo CSS donde se definió la clase
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importa Bootstrap
+
 
 const Home = ({ isAuthenticated }) => {
     const [products, setProducts] = useState([]);
@@ -50,31 +51,31 @@ const Home = ({ isAuthenticated }) => {
     }, [categoryId]);
 
     return (
-        <div>
-            <h2>Bienvenido a nuestra pasteleria :D</h2>
+        <div className="container mt-5">
+            <h2 className="text-center mb-4">Bienvenido a nuestra pastelería :D</h2>
             {!isAuthenticated ? (
-                <div>
-                    <Link to="/register">
-                        <button>Registro</button>
-                    </Link>
-                    <Link to="/login">
-                        <button>Login</button>
-                    </Link>
+                <div className="text-center mb-4">
+                    <Link to="/register" className="btn btn-primary mr-2">Registro</Link>
+                    <Link to="/login" className="btn btn-secondary">Login</Link>
                 </div>
             ) : (
                 <div>
                     <CategoryList />
-                    <h3>{categoryId ? `Productos de la categoría ${categoryName}` : 'Todos los productos'}</h3>
-                    <ul>
+                    <h3 className="mt-4">{categoryId ? `Productos de la categoría ${categoryName}` : 'Todos los productos'}</h3>
+                    <div className="row">
                         {products.map(product => (
-                            <li key={product.id}>
-                                <h4>{product.name}</h4>
-                                <p>{product.description}</p>
-                                <p>Price: ${product.price}</p>
-                                {product.image && <img src={`${product.image}`} alt={product.name} className="product-image" />}
-                            </li>
+                            <div key={product.id} className="col-md-4 mb-4">
+                                <div className="card">
+                                    {product.image && <img src={`${product.image}`} alt={product.name} className="card-img-top img-fluid" />}
+                                    <div className="card-body">
+                                        <h5 className="card-title">{product.name}</h5>
+                                        <p className="card-text">{product.description}</p>
+                                        <p className="card-text"><strong>Price: ${product.price}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             )}
         </div>
