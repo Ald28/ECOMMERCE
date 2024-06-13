@@ -6,7 +6,7 @@ from .views import register, login_view, product_list
 router = DefaultRouter()
 router.register(r'categorias', CategoriaViewSet)
 router.register(r'productos', ProductoSerializer)
-
+ 
 urlpatterns = [
     path('', include(router.urls)),
     path('register/', register, name='register'),

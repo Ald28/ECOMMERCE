@@ -4,13 +4,13 @@ from .models import Categoria, Producto
 from .serializers import CategoriaSerializer, ProductoSerializer
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import User
+from .models import Usuario
 import json
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
-
+ 
 class ProductoSerializer(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
@@ -21,16 +21,16 @@ class ProductoSerializer(viewsets.ModelViewSet):
 def register(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        first_name = data.get('first_name')
-        last_name = data.get('last_name')
+        nombre = data.get('nombre')
+        apellido = data.get('apellido')
         email = data.get('email')
         password = data.get('password')
         
-        if User.objects.filter(email=email).exists():
-            return JsonResponse({'error': 'Email already exists'}, status=400)
+        if Usuario.objects.filter(email=email).exists():
+            return JsonResponse({'error': 'El email ya existe'}, status=400)
         
-        user = User.objects.create(first_name=first_name, last_name=last_name, email=email, password=password)
-        return JsonResponse({'message': 'User created successfully'}, status=201)
+        user = Usuario.objects.create(nombre=nombre, apellido=apellido, email=email, password=password)
+        return JsonResponse({'message': 'Usuario creado'}, status=201)
 
 @csrf_exempt
 def login_view(request):
@@ -40,10 +40,10 @@ def login_view(request):
         password = data.get('password')
         
         try:
-            user = User.objects.get(email=email, password=password)
-            return JsonResponse({'message': 'Login successful', 'user': user.id}, status=200)
-        except User.DoesNotExist:
-            return JsonResponse({'error': 'Invalid credentials'}, status=400)
+            user = Usuario.objects.get(email=email, password=password)
+            return JsonResponse({'message': 'Logeado exitosamente', 'user': user.id}, status=200)
+        except Usuario.DoesNotExist:
+            return JsonResponse({'error': 'Datos incorrectos'}, status=400)
         
 @csrf_exempt
 def product_list(request):

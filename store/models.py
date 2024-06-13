@@ -18,9 +18,9 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
     
-class User(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+class Usuario(models.Model):
+    nombre= models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)
 
