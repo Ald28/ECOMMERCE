@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import Product, Category
+from .models import Producto, Categoria
 
-@admin.register(Product)
+@admin.register(Producto)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'category', 'stock', 'image')
-    list_filter = ('category',)
-    search_fields = ('name', 'description')
+    list_display = ('nombre', 'precio', 'categoria', 'stock', 'imagen')
+    list_filter = ('categoria',)
+    search_fields = ('nombre', 'descripcion')
 
-@admin.register(Category)
+@admin.register(Categoria)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
-    search_fields = ('name', 'description')
+    list_display = ('nombre', 'descripcion')
+    search_fields = ('nombre', 'descripcion') 

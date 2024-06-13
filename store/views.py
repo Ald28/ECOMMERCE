@@ -1,21 +1,21 @@
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Category, Product
-from .serializers import CategorySerializer, ProductSerializer
+from .models import Categoria, Producto
+from .serializers import CategoriaSerializer, ProductoSerializer
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import User
 import json
 
-class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+class CategoriaViewSet(viewsets.ModelViewSet):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
 
-class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+class ProductoSerializer(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category']
+    filterset_fields = ['categoria']
 
 @csrf_exempt
 def register(request):
@@ -48,16 +48,17 @@ def login_view(request):
 @csrf_exempt
 def product_list(request):
     if request.method == 'GET':
-        products = Product.objects.all()
+        products = Producto.objects.all()
         products_data = [
             {
                 "id": product.id, 
-                "name": product.name, 
-                "description": product.description, 
-                "price": product.price,
-                "category": product.category.id,
-                "image": product.image.url if product.image else None
+                "name": product.nombre, 
+                "description": product.descripcion, 
+                "price": product.precio,
+                "category": product.categoria.id,
+                "image": product.imagen.url if product.imagen else None
             } 
             for product in products
         ]
         return JsonResponse(products_data, safe=False)
+    
