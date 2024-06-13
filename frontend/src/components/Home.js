@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import CategoryList from './CategoryList';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa Bootstrap
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Carousel from './Carousel';
 
 
 const Home = ({ isAuthenticated }) => {
@@ -51,8 +52,8 @@ const Home = ({ isAuthenticated }) => {
     }, [categoryId]);
 
     return (
-        <div className="container mt-5">
-            <h2 className="text-center mb-4">Bienvenido a nuestra pastelería :D</h2>
+        <div className="container">
+            <Carousel />
             {!isAuthenticated ? (
                 <div className="text-center mb-4">
                     <Link to="/register" className="btn btn-primary mr-2">Registro</Link>
@@ -60,7 +61,6 @@ const Home = ({ isAuthenticated }) => {
                 </div>
             ) : (
                 <div>
-                    <CategoryList />
                     <h3 className="mt-4">{categoryId ? `Productos de la categoría ${categoryName}` : 'Todos los productos'}</h3>
                     <div className="row">
                         {products.map(product => (
