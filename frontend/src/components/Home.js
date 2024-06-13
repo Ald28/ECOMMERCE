@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa Bootstrap
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Carousel from './Carousel';
-
+import '../assets/styles/Home.css'; // Asegúrate de que la ruta sea correcta
 
 const Home = ({ isAuthenticated }) => {
     const [products, setProducts] = useState([]);
@@ -52,32 +52,34 @@ const Home = ({ isAuthenticated }) => {
     }, [categoryId]);
 
     return (
-        <div className="container">
+        <div className="container-fluid p-0">
             <Carousel />
-            {!isAuthenticated ? (
-                <div className="text-center mb-4">
-                    <Link to="/register" className="btn btn-primary mr-2">Registro</Link>
-                    <Link to="/login" className="btn btn-secondary">Login</Link>
-                </div>
-            ) : (
-                <div>
-                    <h3 className="mt-4">{categoryId ? `Productos de la categoría ${categoryName}` : 'Todos los productos'}</h3>
-                    <div className="row">
-                        {products.map(product => (
-                            <div key={product.id} className="col-md-4 mb-4">
-                                <div className="card">
-                                    {product.image && <img src={`${product.image}`} alt={product.name} className="card-img-top img-fluid" />}
-                                    <div className="card-body">
-                                        <h5 className="card-title">{product.name}</h5>
-                                        <p className="card-text">{product.description}</p>
-                                        <p className="card-text"><strong>Price: ${product.price}</strong></p>
+            <div className="container mt-4">
+                {!isAuthenticated ? (
+                    <div className="text-center mb-4">
+                        <Link to="/register" className="btn btn-primary mr-2">Registro</Link>
+                        <Link to="/login" className="btn btn-secondary">Login</Link>
+                    </div>
+                ) : (
+                    <div>
+                        <h3 className="mt-4">{categoryId ? `Productos de la categoría ${categoryName}` : 'Todos los productos'}</h3>
+                        <div className="row">
+                            {products.map(product => (
+                                <div key={product.id} className="col-md-4 mb-4">
+                                    <div className="card h-100 shadow-sm">
+                                        {product.image && <img src={`${product.image}`} alt={product.name} className="card-img-top img-fluid product-image" />}
+                                        <div className="card-body d-flex flex-column">
+                                            <h5 className="card-title">{product.name}</h5>
+                                            <p className="card-text">{product.description}</p>
+                                            <p className="card-text mt-auto"><strong>Price: ${product.price}</strong></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

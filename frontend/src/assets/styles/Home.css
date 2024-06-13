@@ -1,0 +1,31 @@
+.product-image {
+    height: 200px; /* Ajusta la altura según tus necesidades */
+    object-fit: contain; /* Asegura que la imagen se ajuste completamente dentro del contenedor */
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+  }
+  
+  .card {
+    border: none; /* Elimina el borde predeterminado */
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    color: #6c757d; /* Color del texto de la descripción */
+  }
+  
+  .card-text strong {
+    color: #000; /* Color del texto del precio */
+  }
+  
+  .shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+  
