@@ -30,10 +30,11 @@ const Login = ({ onLogin }) => {
     return (
         <div className="login-container">
             <div className="login-box">
+            <h2 className="mb-4">Inicio Sesión</h2>
             <img src="./images/logoOfficeHub.png" alt="Logo" style={{ height: '70px' }} /><hr></hr>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email</label>
+                        <label htmlFor="email" className="form-label">Correo: </label>
                         <input
                             type="email"
                             className="form-control"
@@ -44,7 +45,7 @@ const Login = ({ onLogin }) => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
+                        <label htmlFor="password" className="form-label">Contraseña</label>
                         <input
                             type="password"
                             className="form-control"
@@ -57,7 +58,7 @@ const Login = ({ onLogin }) => {
                     <button type="submit" className="btn btn-primary">Login</button>
                 </form>
                 <div className="mt-3">
-                    <button onClick={() => navigate('/register')} className="btn btn-link">Don't have an account? Register here</button>
+                    <button onClick={() => navigate('/register')} className="btn btn-link">¿No tienes una cuenta? Registrar aquí</button>
                 </div>
             </div>
         </div>

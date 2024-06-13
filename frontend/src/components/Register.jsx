@@ -35,7 +35,7 @@ const Register = ({ onLogin }) => {
         <div className="register-container">
             <div className="register-box">
             <img src="./images/logoOfficeHub.png" alt="Logo" style={{ height: '70px' }} />
-                <h2 className="mb-4">Register</h2>
+                <h2 className="mb-4">Registro</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="firstName" className="form-label">First Name</label>

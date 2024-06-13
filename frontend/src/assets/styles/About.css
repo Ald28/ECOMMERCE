@@ -1,0 +1,28 @@
+/* src/assets/styles/About.css */
+.container {
+    max-width: 1200px;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.img-fluid {
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 1.5em;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 0.5em;
+}

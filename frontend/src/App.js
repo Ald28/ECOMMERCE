@@ -11,6 +11,7 @@ import { CartProvider } from './context/CartContext';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import About from './components/About';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,6 +49,7 @@ const App = () => {
               <Route path="/register" element={<Register onLogin={handleLogin} />} />
               <Route path="/login" element={<Login onLogin={handleLogin} />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </main>
         </div>
