@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importa Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Carousel from './Carousel';
-import '../assets/styles/ProductCard.css'; // Importa el archivo CSS
+import '../assets/styles/ProductCard.css'; 
 
 const Home = ({ isAuthenticated }) => {
   const [products, setProducts] = useState([]);

@@ -1,7 +1,8 @@
 /* src/assets/styles/ProductCard.css */
 
 .card-img-top {
-    height: 200px; /* Ajusta esta altura según tus necesidades */
-    object-fit: contain; /* Para que la imagen se ajuste dentro del contenedor */
+    height: 200px; 
+    object-fit: contain; 
+    width: 70%;
   }
   
