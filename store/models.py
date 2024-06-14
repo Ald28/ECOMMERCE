@@ -1,27 +1,27 @@
 from django.db import models
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
 
     def __str__(self):
-        return self.name
-
-class Product(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
-    stock = models.IntegerField()
-    image = models.ImageField(upload_to='product_images/', blank=True, null=True)
+        return self.nombre
+ 
+class Producto(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField(max_length=100)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    categoria = models.ForeignKey(Categoria, related_name='products', on_delete=models.CASCADE)
+    stock = models.IntegerField(max_length=100)
+    imagen = models.ImageField(upload_to='product_images/', blank=True, null=True) #permiten que este campo pueda estar vacío
 
     def __str__(self):
-        return self.name
+        return self.nombre
     
-class User(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
+class Usuario(models.Model):
+    nombre= models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)  #asegura que cada email sea único en la base de datos
     password = models.CharField(max_length=100)
 
     def __str__(self):

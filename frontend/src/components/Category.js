@@ -5,27 +5,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Category = () => {
     const { id } = useParams();
-    const [category, setCategory] = useState(null);
-    const [products, setProducts] = useState([]);
+    const [categoria, setCategoria] = useState(null);
+    const [productos, setProducto] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/categories/${id}/`)
-            .then(response => setCategory(response.data))
+        axios.get(`http://localhost:8000/api/categorias/${id}/`)
+            .then(response => setCategoria(response.data))
             .catch(error => console.error(error));
 
-        axios.get(`http://localhost:8000/api/products/?category=${id}`)
-            .then(response => setProducts(response.data))
+        axios.get(`http://localhost:8000/api/productos/?categoria=${id}`)
+            .then(response => setProducto(response.data))
             .catch(error => console.error(error));
     }, [id]);
 
     return (
         <div className="container">
-            {category && <h2 className="my-4 text-center">{category.name}</h2>}
+            {categoria && <h2 className="my-4 text-center">{categoria.nombre}</h2>}
             <div className="row">
-                {products.map(product => (
-                    <div key={product.id} className="col-md-4">
+                {productos.map(product => (
+                    <div key={productos.id} className="col-md-4">
                         <div className="card mb-4 shadow-sm">
-                            {product.image && (
+                            {producto.image && (
                                 <img
                                     src={`http://localhost:8000${product.image}`}
                                     alt={product.name}
