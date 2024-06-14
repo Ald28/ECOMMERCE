@@ -14,8 +14,8 @@ class CategoriaViewSet(viewsets.ModelViewSet): #Esta es una clase especial que m
 class ProductoSerializer(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
-    filter_backends = [DjangoFilterBackend] #Le decimos que queremos usar la herramienta de filtrado
-    filterset_fields = ['categoria'] #Le decimos que queremos usar la herramienta de filtrado
+    #filter_backends = [DjangoFilterBackend] #Le decimos que queremos usar la herramienta de filtrado
+    #filterset_fields = ['categoria'] #Le decimos que queremos usar la herramienta de filtrado
 
 @csrf_exempt #Esto le dice a Django que no necesita verificar un tipo especial de seguridad para esta función
 def register(request):
