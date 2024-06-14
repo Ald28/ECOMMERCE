@@ -1,7 +1,7 @@
-// src/components/About.js
+
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importa Bootstrap
-import '../assets/styles/About.css'; // Importa los estilos personalizados
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/styles/About.css'; 
 
 const About = () => {
     return (
