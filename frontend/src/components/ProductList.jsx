@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de que Bootstrap está importado
-import './ProductList.css'; // Importa el archivo CSS
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import './ProductList.css'; 
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);

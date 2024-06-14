@@ -1,11 +1,11 @@
 .product-image {
-    height: 200px; /* Ajusta la altura según tus necesidades */
-    object-fit: contain; /* Asegura que la imagen se ajuste completamente dentro del contenedor */
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+    height: 200px;
+    object-fit: contain;
+    width: 100%; 
   }
   
   .card {
-    border: none; /* Elimina el borde predeterminado */
+    border: none; 
   }
   
   .card-body {
@@ -18,11 +18,11 @@
   }
   
   .card-text {
-    color: #6c757d; /* Color del texto de la descripción */
+    color: #6c757d;
   }
   
   .card-text strong {
-    color: #000; /* Color del texto del precio */
+    color: #000; 
   }
   
   .shadow-sm {

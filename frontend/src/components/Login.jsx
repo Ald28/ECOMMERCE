@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de que Bootstrap está importado
-import '../assets/styles/Login.css'; // Asegúrate de crear este archivo y agregar los estilos a continuación
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import '../assets/styles/Login.css'; 
 
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
@@ -18,8 +18,8 @@ const Login = ({ onLogin }) => {
         .then(response => {
             console.log(response.data);
             alert('Login successful');
-            onLogin();  // Llama a onLogin después del login exitoso
-            navigate('/home');  // Redirige al home después del login
+            onLogin(); 
+            navigate('/home'); 
         })
         .catch(error => {
             console.error(error);

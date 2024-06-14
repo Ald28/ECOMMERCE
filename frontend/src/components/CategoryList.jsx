@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de que Bootstrap está importado
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);

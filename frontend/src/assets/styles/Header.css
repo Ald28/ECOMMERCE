@@ -1,14 +1,14 @@
 .sticky-header {
-    position: -webkit-sticky; /* Safari */
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 1000; /* Asegúrate de que el navbar esté por encima de otros elementos */
+    z-index: 1000; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .nav-link svg {
     vertical-align: middle;
-    margin-right: 10px; /* Ajusta el espaciado si es necesario */
+    margin-right: 10px; 
   }
   
   .navbar-nav.ml-auto .btn {

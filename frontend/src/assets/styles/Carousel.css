@@ -1,6 +1,6 @@
 .carousel-image {
-    height: 400px; /* Ajusta la altura según tus necesidades */
-    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+    height: 400px;
+    object-fit: cover;
+    width: 100%; 
   }
   

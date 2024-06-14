@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de que Bootstrap está importado
-import '../assets/styles/Register.css'; // Asegúrate de crear este archivo y agregar los estilos a continuación
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import '../assets/styles/Register.css'; 
 
 const Register = ({ onLogin }) => {
     const [firstName, setFirstName] = useState('');
@@ -22,8 +22,8 @@ const Register = ({ onLogin }) => {
         .then(response => {
             console.log(response.data);
             alert('User registered successfully');
-            onLogin();  // Llama a onLogin después del registro exitoso
-            navigate('/home');  // Redirige al home después del registro
+            onLogin();  
+            navigate('/home');
         })
         .catch(error => {
             console.error(error);
