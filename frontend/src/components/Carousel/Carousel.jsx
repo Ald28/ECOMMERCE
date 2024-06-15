@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/styles/Carousel.css'; // Importa el archivo CSS
+import '../../assets/styles/Carousel.css'; // Importa el archivo CSS
 
 const Carousel = () => {
   return (

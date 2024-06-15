@@ -134,3 +134,7 @@ CORS_ALLOWED_ORIGINS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#claves secretas stripe
+STRIPE_SECRET_KEY = 'sk_test_51PRhFmH1SRAUWCPF6CkKTPO3KjvYgQIqT9mafNl33dl4hsd46dp94L64LYfss6UTsC2KfPIpFIrUKkXfP6oKdQT400fkQ3Bb31'
+FRONTEND_URL = 'http://localhost:3000' 

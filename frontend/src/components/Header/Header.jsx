@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import '../assets/styles/Header.css'; // Importa el archivo CSS
+import '../../assets/styles/Header.css'; // Importa el archivo CSS
 
 const Header = ({ isAuthenticated, handleLogout, categories }) => {
   const { cart } = useCart();

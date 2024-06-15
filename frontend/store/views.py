@@ -1,11 +1,14 @@
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Category, Product
+from .models import Category, Product, User
 from .serializers import CategorySerializer, ProductSerializer
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import User
 import json
+import stripe
+from django.conf import settings
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
@@ -61,3 +64,33 @@ def product_list(request):
             for product in products
         ]
         return JsonResponse(products_data, safe=False)
+
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        product_id = data.get('product_id')
+
+        try:
+            product = Product.objects.get(id=product_id)
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[{
+                    'price_data': {
+                        'currency': 'usd',
+                        'product_data': {
+                            'name': product.name,
+                        },
+                        'unit_amount': int(product.price * 100),  # El precio en centavos
+                    },
+                    'quantity': 1,
+                }],
+                mode='payment',
+                success_url=settings.FRONTEND_URL + '/success',
+                cancel_url=settings.FRONTEND_URL + '/cancel',
+            )
+            return JsonResponse({'id': checkout_session.id})
+        except Product.DoesNotExist:
+            return JsonResponse({'error': 'Product does not exist'}, status=404)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=400)

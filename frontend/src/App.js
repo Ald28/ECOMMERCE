@@ -1,17 +1,18 @@
 // src/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Register from './components/Register';
-import Login from './components/Login';
-import Home from './components/Home';
-import Header from './components/Header';
-import Cart from './components/Cart';
-import CategoryList from './components/CategoryList';
+import Register from './Pages/Register';
+import Login from './Pages/Login';
+import Home from './Pages/Home';
+import Header from './components/Header/Header';
+import Cart from './Pages/Cart';
+import CategoryList from './components/Categorias/CategoryList';
 import { CartProvider } from './context/CartContext';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import About from './components/About';
+import About from './components/landin/About';
+import ProductDetail from './Pages/ProductDetail';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -50,6 +51,7 @@ const App = () => {
               <Route path="/login" element={<Login onLogin={handleLogin} />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/about" element={<About />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
             </Routes>
           </main>
         </div>

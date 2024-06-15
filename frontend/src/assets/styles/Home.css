@@ -1,31 +1,62 @@
-.product-image {
-    height: 200px; /* Ajusta la altura según tus necesidades */
-    object-fit: contain; /* Asegura que la imagen se ajuste completamente dentro del contenedor */
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
   }
   
-  .card {
-    border: none; /* Elimina el borde predeterminado */
+  .product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-header {
+    position: relative;
+    height: 40px;
+  }
+  
+  .badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
   }
   
   .card-body {
-    padding: 1.25rem;
+    padding: 15px;
+    text-align: center;
   }
   
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
+  .card-footer {
+    padding: 10px;
+    background-color: #f8f9fa;
+    text-align: center;
+  }
+  
+  .card-footer .btn {
+    font-size: 14px;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: #6c757d;
+    margin-left: 5px;
   }
   
   .card-text {
-    color: #6c757d; /* Color del texto de la descripción */
+    font-size: 16px;
+    color: #000;
+  }
+
+  .product-img {
+    max-height: 200px; /* Ajusta la altura máxima según sea necesario */
+    object-fit: contain; /* Esto asegura que la imagen se ajuste al contenedor sin ser recortada */
+    width: 100%;
   }
   
-  .card-text strong {
-    color: #000; /* Color del texto del precio */
-  }
-  
-  .shadow-sm {
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  }
   
