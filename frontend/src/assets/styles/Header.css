@@ -1,20 +1,166 @@
-.sticky-header {
+.header {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1000; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+    background-color: #56a185;
+}
 
-  .nav-link svg {
-    vertical-align: middle;
-    margin-right: 10px; 
-  }
+.nav-link svg {
+  vertical-align: middle;
+  margin-right: 10px; 
+}
   
-  .navbar-nav.ml-auto .btn {
-    margin-left: 10px;
-  }
-  
-  
+.navbar-nav.ml-auto .btn {
+  margin-left: 10px;
+}
+
+.boton {
+  background-color: #67be9b;
+  color: white;
+  border: 1px solid #52a684;
+  border-radius: 5px;
+  padding: 8px 20px;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.boton:hover {
+  background-color: #55a687;
+  border-color: #55a687;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.boton.ml-2 {
+  margin-left: 10px;
+}
 
   
+.nav-link {
+  color: #ffffff; /* Color del texto */
+  font-size: 16px; /* Tamaño de fuente */
+  text-decoration: none; /* Quitar subrayado */
+  padding: 10px 20px; /* Espaciado interno */
+  transition: all 0.3s ease; /* Transición suave */
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #495057; /* Cambio de color al pasar el mouse */
+}
+
+.dropdown-menu {
+  background-color: #343a40; /* Color de fondo del menú desplegable */
+}
+
+.dropdown-item {
+  color: #ffffff !important; /* Color del texto del ítem */
+  font-size: 14px; /* Tamaño de fuente del ítem */
+}
+
+.dropdown-item:hover {
+  background-color: #495057; /* Cambio de color al pasar el mouse */
+}
+
+/* Ajustes para el formulario de búsqueda */
+.form-inline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinea el formulario de búsqueda a la derecha */
+  position: relative; /* Para poder posicionar los resultados de búsqueda */
+}
+
+.search-results {
+  position: absolute;
+  top: 100%; /* Posicionar justo debajo del campo de búsqueda */
+  right: 0; /* Alineado a la derecha */
+  width: 300px; /* Ancho fijo para los resultados */
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.search-results .list-group-item {
+  display: flex;
+  align-items: center;
+}
+
+.search-results .list-group-item img {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.no-results {
+  padding: 10px;
+  color: #999;
+}
+
+/* Ocultar la barra en blanco */
+.header .navbar {
+  padding: 0;
+}
+
+.header .form-inline {
+  margin: 0;
+}
+
+.nav-link svg {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.navbar-nav.ml-auto .btn {
+  margin-left: 10px;
+}
+
+.boton {
+  background-color: #67be9b;
+  color: white;
+  border: 1px solid #52a684;
+  border-radius: 5px;
+  padding: 8px 20px;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.boton:hover {
+  background-color: #55a687;
+  border-color: #55a687;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.boton.ml-2 {
+  margin-left: 10px;
+}
+
+.nav-link {
+  color: #ffffff; /* Color del texto */
+  font-size: 16px; /* Tamaño de fuente */
+  text-decoration: none; /* Quitar subrayado */
+  padding: 10px 20px; /* Espaciado interno */
+  transition: all 0.3s ease; /* Transición suave */
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #495057; /* Cambio de color al pasar el mouse */
+}
+
+.dropdown-menu {
+  background-color: #343a40; /* Color de fondo del menú desplegable */
+}
+
+.dropdown-item {
+  color: #ffffff !important; /* Color del texto del ítem */
+  font-size: 14px; /* Tamaño de fuente del ítem */
+}
+
+.dropdown-item:hover {
+  background-color: #495057; /* Cambio de color al pasar el mouse */
+}

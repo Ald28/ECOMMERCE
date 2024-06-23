@@ -1,0 +1,36 @@
+.category-card {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa; /* Color de fondo */
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 10px; /* Margen entre las categorías */
+  }
+  
+  .category-card:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al pasar el mouse */
+  }
+  
+  .category-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%; /* Forma circular */
+    margin-bottom: 10px;
+  }
+  
+  .category-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40; /* Color del texto */
+  }
+  
+  @media (max-width: 768px) {
+    .category-card {
+      margin: 10px 0; /* Ajuste de margen inferior en dispositivos móviles */
+    }
+  }
+  
+    

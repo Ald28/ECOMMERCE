@@ -1,64 +1,103 @@
 from rest_framework import viewsets
-from django_filters.rest_framework import DjangoFilterBackend
-from .models import Categoria, Producto
-from .serializers import CategoriaSerializer, ProductoSerializer
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
-from .models import Usuario
+from .models import Usuario, Producto, Categoria
+from .serializers import UsuarioSerializer, ProductoSerializer, CategoriaSerializer
 import json
+from django.contrib.auth.hashers import make_password, check_password
 
-class CategoriaViewSet(viewsets.ModelViewSet): #Esta es una clase especial que maneja cómo mostramos, creamos, actualizamos y borramos categorías
+class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
- 
-class ProductoSerializer(viewsets.ModelViewSet):
+
+class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
-    filter_backends = [DjangoFilterBackend] #Le decimos que queremos usar la herramienta de filtrado
-    filterset_fields = ['categoria'] #Le decimos que queremos usar la herramienta de filtrado
 
-@csrf_exempt #Esto le dice a Django que no necesita verificar un tipo especial de seguridad para esta función
-def register(request):
-    if request.method == 'POST':
-        data = json.loads(request.body) #convierte los datos que enviaron a un formato que Python puede entender
-        nombre = data.get('nombre')
-        apellido = data.get('apellido')
-        email = data.get('email')
-        password = data.get('password')
-        
-        if Usuario.objects.filter(email=email).exists(): #Verifica si ya existe un usuario con ese email
-            return JsonResponse({'error': 'El email ya existe'}, status=400)
-        
-        user = Usuario.objects.create(nombre=nombre, apellido=apellido, email=email, password=password) #Crea un nuevo usuario si el email no existe
-        return JsonResponse({'message': 'Usuario creado'}, status=201)
+class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
 
 @csrf_exempt
-def login_view(request):
+def registro(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        email = data.get('email')
+        nombre = data.get('nombre')
+        apellido = data.get('apellido')
+        correo = data.get('correo')
         password = data.get('password')
         
-        try: #Trata de encontrar al usuario con el email y la contraseña correctos, si no lo encuentra, envía un mensaje de error
-            user = Usuario.objects.get(email=email, password=password)
-            return JsonResponse({'message': 'Logeado exitosamente', 'user': user.id}, status=200)
-        except Usuario.DoesNotExist:
-            return JsonResponse({'error': 'Datos no encontrados'}, status=400)
+        if Usuario.objects.filter(correo=correo).exists():
+            return JsonResponse({'error': 'El email ya existe'}, status=400)
         
+        hashed_password = make_password(password)
+        user = Usuario.objects.create(nombre=nombre, apellido=apellido, correo=correo, password=hashed_password)
+        print(f"Usuario creado con correo: {correo} y hash: {user.password}")
+        return JsonResponse({'message': 'Usuario creado'}, status=201)
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
+
 @csrf_exempt
-def product_list(request):
-    if request.method == 'GET': #Verifica si alguien está pidiendo ver datos
+def iniciar_sesion(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        correo = data.get('correo')
+        password = data.get('password')
+        
+        try:
+            user = Usuario.objects.get(correo=correo)
+            if check_password(password, user.password):
+                return JsonResponse({'message': 'Logeado exitosamente', 'user': user.id}, status=200)
+            else:
+                return JsonResponse({'error': 'Contraseña incorrecta'}, status=400)
+        except Usuario.DoesNotExist:
+            return JsonResponse({'error': 'Usuario no encontrado'}, status=400)
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
+    
+@csrf_exempt
+def listar_productos(request):
+    if request.method == 'GET':
         products = Producto.objects.all()
-        products_data = [ #Crea una lista de diccionarios con la información de cada producto
+        products_data = [
             {
-                "id": product.id, 
-                "name": product.nombre, 
-                "description": product.descripcion, 
-                "price": product.precio,
-                "category": product.categoria.id,
-                "image": product.imagen.url if product.imagen else None
-            } 
+                "id": product.id,
+                "nombre": product.nombre,
+                "descripcion": product.descripcion,
+                "precio": str(product.precio),  # Convertir DecimalField a string para JSON
+                "categoria": product.categoria.id,
+                "imagen": product.imagen.url if product.imagen else None
+            }
             for product in products
         ]
-        return JsonResponse(products_data, safe=False) #Envía la lista de productos en formato JSON
+        return JsonResponse(products_data, safe=False)
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
     
+    
+@api_view(['GET'])
+def listar_productos_por_categoria(request, categoryId):
+    categoria = get_object_or_404(Categoria, id=categoryId)
+    productos = Producto.objects.filter(categoria=categoria)
+    serializer = ProductoSerializer(productos, many=True)
+    data = {
+        'categoria': categoria.nombre,
+        'productos': serializer.data
+    }
+    return Response(data)
+
+@api_view(['GET'])
+def buscar_productos(request):
+    print("Vista buscar_productos alcanzada")  # Log adicional
+    query = request.GET.get('query', '')
+    print(f"Query: {query}")  # Log para verificar el query recibido
+    if query:
+        productos = Producto.objects.filter(nombre__icontains=query)
+        print(f"Productos encontrados: {productos}")  # Log para verificar los productos encontrados
+        serializer = ProductoSerializer(productos, many=True)
+        return Response(serializer.data)
+    print("No se proporcionó un término de búsqueda")  # Log para verificar si no se proporcionó el término de búsqueda
+    return Response({'error': 'No se proporcionó un término de búsqueda'}, status=400)

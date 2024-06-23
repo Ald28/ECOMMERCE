@@ -1,0 +1,33 @@
+/* Footer.css */
+.footer {
+  padding: 40px 0;
+  color: #fff;
+}
+
+.footer h4 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.footer p {
+  margin-bottom: 10px;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 5px;
+}
+
+.footer ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer ul li a:hover {
+  text-decoration: underline;
+}
